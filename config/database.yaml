@@ -1,2 +1,0 @@
-test:
-  database: yourproject_test<%= ENV['TEST_ENV_NUMBER'] %>
