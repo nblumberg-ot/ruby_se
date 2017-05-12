@@ -1,0 +1,9 @@
+.DS_Store
+.idea/
+vendor/
+*~
+*.png
+*.html
+*.txt
+*.log
+*.lock
