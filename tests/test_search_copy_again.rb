@@ -5,7 +5,7 @@ require_relative '../pages/home'
 require_relative '../pages/base'
 require 'yaml'
 
-class TestSearch < Test::Unit::TestCase
+class TestSearchCopyTwo < Test::Unit::TestCase
 
 	def setup
 		#@driver = Selenium::WebDriver.for :firefox
@@ -24,25 +24,25 @@ class TestSearch < Test::Unit::TestCase
 		@driver.quit
 	end
 
-	def test_anonymous_search_with_location_suggestion
+	def test_anonymous_search_with_location_suggestion_three
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability", title
 	end
 
-	def test_anonymous_search_with_location_suggestion_fail
+	def test_anonymous_search_with_location_suggestion_fail_three
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability!", title
 	end
 
-	def test_anonymous_search_with_location_suggestion_again
+	def test_anonymous_search_with_location_suggestion_again_three
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability", title
 	end
 
-	def test_anonymous_search_with_location_suggestion_fail_again
+	def test_anonymous_search_with_location_suggestion_fail_again_three
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability!", title

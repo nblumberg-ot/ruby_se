@@ -5,11 +5,14 @@ require_relative '../pages/home'
 require_relative '../pages/base'
 require 'yaml'
 
-class Search < Test::Unit::TestCase
+class TestSearchCopyOne < Test::Unit::TestCase
 
 	def setup
-		@driver = Selenium::WebDriver.for :firefox
-		@wait = Selenium::WebDriver::Wait.new(:timeout => 10)
+		#@driver = Selenium::WebDriver.for :firefox
+ 		@driver = Selenium::WebDriver.for(
+		:remote,
+		url: 'http://localhost:32773/wd/hub',
+		desired_capabilities: :firefox)
 		@home = Home.new(@driver)
 		@base = Base.new(@driver)
 		fn = File.expand_path(Dir.pwd + "/data/properties.yml")
@@ -28,6 +31,18 @@ class Search < Test::Unit::TestCase
 	end
 
 	def test_anonymous_search_with_location_suggestion_fail_copy
+		@home.search("San Francisco")
+		title = @base.get_title
+		assert_match "Availability!", title
+	end
+
+	def test_anonymous_search_with_location_suggestion_again
+		@home.search("San Francisco")
+		title = @base.get_title
+		assert_match "Availability", title
+	end
+
+	def test_anonymous_search_with_location_suggestion_fail_again
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability!", title
