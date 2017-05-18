@@ -11,7 +11,7 @@ class TestSearchCopyOne < Test::Unit::TestCase
 		#@driver = Selenium::WebDriver.for :firefox
  		@driver = Selenium::WebDriver.for(
 		:remote,
-		url: 'http://localhost:32768/wd/hub',
+		url: 'http://172.17.0.3:32768/wd/hub',
 		desired_capabilities: :firefox)
 		@home = Home.new(@driver)
 		@base = Base.new(@driver)
@@ -31,18 +31,6 @@ class TestSearchCopyOne < Test::Unit::TestCase
 	end
 
 	def test_anonymous_search_with_location_suggestion_fail_copy
-		@home.search("San Francisco")
-		title = @base.get_title
-		assert_match "Availability!", title
-	end
-
-	def test_anonymous_search_with_location_suggestion_again
-		@home.search("San Francisco")
-		title = @base.get_title
-		assert_match "Availability", title
-	end
-
-	def test_anonymous_search_with_location_suggestion_fail_again
 		@home.search("San Francisco")
 		title = @base.get_title
 		assert_match "Availability!", title

@@ -36,16 +36,4 @@ class TestSearchCopyTwo < Test::Unit::TestCase
 		assert_match "Availability!", title
 	end
 
-	def test_anonymous_search_with_location_suggestion_again_three
-		@home.search("San Francisco")
-		title = @base.get_title
-		assert_match "Availability", title
-	end
-
-	def test_anonymous_search_with_location_suggestion_fail_again_three
-		@home.search("San Francisco")
-		title = @base.get_title
-		assert_match "Availability!", title
-	end
-
 end

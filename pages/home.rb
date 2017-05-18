@@ -23,7 +23,6 @@ class Home < Base
 		get_element(@search_box).send_keys search_text
 		click_until_successful(@first_location_suggestion)
 		get_element(@find_table_button).click
-
 		wait_until_text_in_page_source(@searching_text)
 		wait_until_text_not_in_page_source(@searching_text)
 
