@@ -11,7 +11,7 @@ class TestSearch < Test::Unit::TestCase
 		#@driver = Selenium::WebDriver.for :firefox
  		@driver = Selenium::WebDriver.for(
 		:remote,
-		url: 'http://localhost:4444/wd/hub',
+		url: 'http://localhost:32772/wd/hub',
 		desired_capabilities: :firefox)
 		@home = Home.new(@driver)
 		@base = Base.new(@driver)

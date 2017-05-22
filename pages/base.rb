@@ -17,7 +17,7 @@ class Base
 		return title
 	end
 
-	def click_until_attribute_null(click_element, attribute, wait_time=1, tries=3)
+	def click_until_attribute_null(click_element, attribute, wait_time=1, tries=5)
 		for i in 0..tries
 			begin
 				click_element_object = @driver.find_element :css => click_element
@@ -30,7 +30,7 @@ class Base
 		end
 	end
 
-	def click_until_successful(click_element, wait_time=1, tries=3)
+	def click_until_successful(click_element, wait_time=1, tries=5)
 		for i in 0..tries
 			begin
 				first_location_suggestion = @driver.find_element :css => click_element
@@ -41,7 +41,7 @@ class Base
 		end
 	end
 
-	def wait_until_text_in_page_source(text, tries=3)
+	def wait_until_text_in_page_source(text, tries=5)
 		for i in 0..tries
 			source = @driver.page_source
 			if source.include? text
@@ -52,7 +52,7 @@ class Base
 		end
 	end
 
-	def wait_until_text_not_in_page_source(text, tries=3)
+	def wait_until_text_not_in_page_source(text, tries=5)
 		for i in 0..tries
 
 			source = @driver.page_source
