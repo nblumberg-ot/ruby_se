@@ -41,25 +41,25 @@ class Base
 		end
 	end
 
-	def wait_until_text_in_page_source(text, tries=5)
+	def wait_until_text_in_page_source(text, wait_time=1, tries=5)
 		for i in 0..tries
 			source = @driver.page_source
 			if source.include? text
 				break
 			else
-				sleep 1
+				sleep wait_time
 			end
 		end
 	end
 
-	def wait_until_text_not_in_page_source(text, tries=5)
+	def wait_until_text_not_in_page_source(text, wait_time=1, tries=5)
 		for i in 0..tries
 
 			source = @driver.page_source
 			if !source.include? text
 				break
 			else
-				sleep 1
+				sleep wait_time
 			end
 		end
 	end
