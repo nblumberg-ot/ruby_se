@@ -1,18 +1,16 @@
 require 'rubygems'
 require 'selenium-webdriver'
 require 'test/unit'
+require_relative '../browser'
 require_relative '../pages/home'
 require_relative '../pages/base'
 require 'yaml'
 
-class TestSearchCopyTwo < Test::Unit::TestCase
+class TestSearch < Test::Unit::TestCase
 
 	def setup
-		#@driver = Selenium::WebDriver.for :firefox
- 		@driver = Selenium::WebDriver.for(
-		:remote,
-		url: 'http://localhost:4444/wd/hub',
-		desired_capabilities: :firefox)
+		@test_name = name
+		@driver = Browser.start_session
 		@home = Home.new(@driver)
 		@base = Base.new(@driver)
 		fn = File.expand_path(Dir.pwd + "/data/properties.yml")
@@ -21,19 +19,19 @@ class TestSearchCopyTwo < Test::Unit::TestCase
 	end
 
 	def teardown
-		@driver.quit
+		Browser.end_session(@driver, method_name)
 	end
 
 	def test_anonymous_search_with_location_suggestion_three
 		@home.search("San Francisco")
 		title = @base.get_title
-		assert_match "Availability", title
+		assert_match("Availability", title, message=title + " does not match Availability!")
 	end
 
 	def test_anonymous_search_with_location_suggestion_fail_three
 		@home.search("San Francisco")
 		title = @base.get_title
-		assert_match "Availability!", title
+		assert_match("Availability!", title, message=title + " does not match Availability!")
 	end
 
 end
